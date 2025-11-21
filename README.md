@@ -166,7 +166,7 @@ cv-analyzer/
    - Use the suggestions to update your CV
    - Analyze again to see your progress!
 
-## 🔧 Configuration
+## Configuration
 
 ### Backend Configuration
 

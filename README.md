@@ -1,96 +1,113 @@
-# CV Analyzer - AI-Powered Resume Improvement Tool
+# CV Analyzer - AI-Powered Resume Analysis Platform
 
-A full-stack web application that analyzes CVs/resumes and provides AI-powered suggestions for improvement. Optionally compares your CV against a Job Description to identify missing keywords and tailor your application.
+A production-ready full-stack web application that leverages AI to analyze resumes and provide actionable improvement suggestions. The platform compares CVs against job descriptions to identify keyword gaps and optimize application materials.
 
-##  Features
+## Key Features
 
-- **PDF & DOCX Support**: Upload your resume in PDF or DOCX format
-- **Section Detection**: Automatically identifies key CV sections (Summary, Skills, Experience, Projects, Education)
-- **Keyword Analysis**: Compare your CV against job descriptions to find missing keywords
-- **AI-Powered Feedback**: Get detailed suggestions for improving each section
-- **Bullet Point Enhancement**: See rewritten examples of weak bullet points with stronger alternatives
-- **Modern UI**: Clean, responsive interface built with React and TailwindCSS
-- **Fast Processing**: Efficient text extraction and analysis
+- **Multi-format Support**: Processes PDF and DOCX resume formats
+- **Intelligent Section Detection**: Automatically identifies key resume sections (Summary, Skills, Experience, Projects, Education)
+- **Keyword Analysis**: Performs comparative analysis between resumes and job descriptions
+- **AI-Powered Insights**: Delivers detailed, contextual improvement suggestions using Google Gemini AI
+- **Content Enhancement**: Provides before/after examples for strengthening bullet points
+- **Modern Tech Stack**: Built with React, TypeScript, and TailwindCSS for optimal performance
+- **Efficient Processing**: Optimized text extraction and analysis pipeline
+- **Multilingual AI Support**: Gemini API integration with Vietnamese language support
+- **Production-Ready**: Docker containerization with comprehensive configuration options
 
-##  Architecture
+## Architecture Overview
 
-### Backend (FastAPI + Python)
+### Backend Stack
 
-- **FastAPI** framework for REST API
-- **PDF extraction** using `pdfplumber`
-- **DOCX extraction** using `python-docx`
-- **Rule-based analysis** for section detection and metrics
-- **Mock LLM integration** (ready for real API integration)
+- **Framework**: FastAPI with async support for high-performance API endpoints
+- **Document Processing**:
+  - PDF extraction via `pdfplumber`
+  - DOCX extraction via `python-docx`
+- **Analysis Engine**:
+  - Rule-based section detection and metrics calculation
+  - Google Gemini AI integration for intelligent analysis
+  - Automatic fallback to mock data when API is unavailable
+- **Configuration**: Environment-based configuration with `.env` support
 
-### Frontend (React + TypeScript)
+### Frontend Stack
 
-- **React 18** with TypeScript for type safety
-- **Vite** for fast development and building
-- **TailwindCSS** for modern, responsive styling
-- **Axios** for API communication
-- Modular component architecture
+- **Framework**: React 18 with TypeScript for type-safe development
+- **Build Tool**: Vite for fast HMR and optimized production builds
+- **Styling**: TailwindCSS with custom design system
+- **HTTP Client**: Axios with interceptors for API communication
+- **Architecture**: Modular component-based structure with clear separation of concerns
 
-##  Project Structure
+## Project Structure
 
 ```
 cv-analyzer/
 ├── backend/
 │   ├── app/
 │   │   ├── __init__.py
-│   │   ├── main.py              # FastAPI app and routes
-│   │   ├── models.py            # Pydantic models
-│   │   ├── config.py            # Configuration constants
+│   │   ├── main.py              # FastAPI application & route definitions
+│   │   ├── models.py            # Pydantic data models
+│   │   ├── config.py            # Configuration management
 │   │   └── services/
-│   │       ├── cv_extraction.py  # PDF/DOCX text extraction
-│   │       ├── cv_analysis.py    # Rule-based analysis
-│   │       └── llm_client.py     # LLM integration (mock)
+│   │       ├── cv_extraction.py  # Document text extraction service
+│   │       ├── cv_analysis.py    # Rule-based analysis engine
+│   │       └── llm_client.py     # Gemini API integration layer
 │   ├── requirements.txt
+│   ├── Dockerfile
+│   ├── .env.example
 │   └── .gitignore
 │
-└── frontend/
-    ├── src/
-    │   ├── components/
-    │   │   ├── FileUploadForm.tsx
-    │   │   ├── AnalysisResult.tsx
-    │   │   ├── SectionChecklist.tsx
-    │   │   ├── KeywordMatchList.tsx
-    │   │   └── SuggestionCard.tsx
-    │   ├── services/
-    │   │   └── apiClient.ts
-    │   ├── types/
-    │   │   └── api.ts
-    │   ├── App.tsx
-    │   ├── main.tsx
-    │   └── index.css
-    ├── package.json
-    ├── vite.config.ts
-    ├── tailwind.config.js
-    └── tsconfig.json
+├── frontend/
+│   ├── src/
+│   │   ├── components/
+│   │   │   ├── FileUploadForm.tsx
+│   │   │   ├── AnalysisResult.tsx
+│   │   │   ├── SectionChecklist.tsx
+│   │   │   ├── KeywordMatchList.tsx
+│   │   │   └── SuggestionCard.tsx
+│   │   ├── services/
+│   │   │   └── apiClient.ts
+│   │   ├── types/
+│   │   │   └── api.ts
+│   │   ├── App.tsx
+│   │   ├── main.tsx
+│   │   └── index.css
+│   ├── package.json
+│   ├── vite.config.ts
+│   ├── tailwind.config.js
+│   ├── tsconfig.json
+│   └── Dockerfile
+│
+├── docker-compose.yml
+├── .env.docker.example
+├── setup.sh
+├── README.md
+├── GEMINI_SETUP.md
+└── DOCKER.md
 ```
 
-##  Getting Started
+## Getting Started
 
 ### Prerequisites
 
-- **Python 3.8+** (for backend)
-- **Node.js 16+** and **npm** (for frontend)
-- **pip** (Python package manager)
+- **Python 3.8+** with pip
+- **Node.js 16+** with npm
+- **Google Gemini API Key** (Free tier available at https://aistudio.google.com/app/apikey)
+- **Docker & Docker Compose** (optional, for containerized deployment)
 
 ### Backend Setup
 
-1. **Navigate to the backend directory:**
+1. **Navigate to backend directory:**
 
    ```bash
    cd cv-analyzer/backend
    ```
 
-2. **Create a virtual environment (recommended):**
+2. **Create and activate virtual environment:**
 
    ```bash
    python3 -m venv venv
-   source venv/bin/activate  # On macOS/Linux
+   source venv/bin/activate  # macOS/Linux
    # or
-   venv\Scripts\activate     # On Windows
+   venv\Scripts\activate     # Windows
    ```
 
 3. **Install dependencies:**
@@ -99,20 +116,35 @@ cv-analyzer/
    pip install -r requirements.txt
    ```
 
-4. **Run the FastAPI server:**
+4. **Configure environment variables:**
+
+   ```bash
+   cp .env.example .env
+   ```
+
+   Edit `.env` with your Gemini API credentials:
+
+   ```env
+   # Obtain free API key at: https://aistudio.google.com/app/apikey
+   GEMINI_API_KEY=your_api_key_here
+   GEMINI_MODEL=gemini-1.5-flash
+   ```
+
+5. **Start the development server:**
 
    ```bash
    uvicorn app.main:app --reload
    ```
 
-   The backend API will be available at `http://localhost:8000`
+   API server runs at `http://localhost:8000`
 
-5. **Verify the API is running:**
-   Open `http://localhost:8000/docs` in your browser to see the interactive API documentation.
+6. **Verify deployment:**
+
+   Access interactive API documentation at `http://localhost:8000/docs`
 
 ### Frontend Setup
 
-1. **Navigate to the frontend directory:**
+1. **Navigate to frontend directory:**
 
    ```bash
    cd cv-analyzer/frontend
@@ -124,47 +156,84 @@ cv-analyzer/
    npm install
    ```
 
-3. **Run the development server:**
+3. **Start development server:**
 
    ```bash
    npm run dev
    ```
 
-   The frontend will be available at `http://localhost:5173`
+   Development server runs at `http://localhost:5173`
 
-4. **Open the app:**
-   Navigate to `http://localhost:5173` in your browser.
+4. **Access the application:**
 
-##  Usage
+   Navigate to `http://localhost:5173` in your browser
 
-1. **Upload Your CV:**
+## Docker Deployment
 
-   - Click "Browse Files" or drag and drop your PDF/DOCX CV
+See [DOCKER.md](DOCKER.md) for comprehensive deployment documentation.
+
+### Quick Start with Docker Compose
+
+```bash
+# Clone and navigate to project
+cd cv-analyzer
+
+# Configure environment
+cp .env.docker.example .env
+# Edit .env and add your Gemini API key
+
+# Start all services
+docker-compose up
+
+# Access application
+# Frontend: http://localhost:5173
+# Backend API: http://localhost:8000
+# API Docs: http://localhost:8000/docs
+```
+
+### Production Deployment
+
+```bash
+# Run in detached mode
+docker-compose up -d
+
+# View logs
+docker-compose logs -f
+
+# Stop services
+docker-compose down
+```
+
+## Usage Guide
+
+1. **Upload Resume:**
+
+   - Use drag-and-drop or file browser to select your resume
    - Supported formats: PDF, DOCX
    - Maximum file size: 10 MB
 
 2. **Add Job Description (Optional):**
 
-   - Paste the job description in the textarea
-   - This enables keyword matching analysis
+   - Paste the target job description for keyword matching analysis
+   - Enables comparison of resume content against job requirements
 
 3. **Analyze:**
 
-   - Click " Analyze CV"
-   - Wait for the analysis to complete (usually 2-5 seconds)
+   - Click "Analyze CV" to initiate processing
+   - Analysis typically completes in 2-5 seconds
 
 4. **Review Results:**
 
-   - **Overall Summary**: High-level assessment of your CV
-   - **Strengths & Weaknesses**: What's working and what needs improvement
-   - **Section Checklist**: Which CV sections are present/missing
-   - **Keyword Analysis**: JD keywords matched vs missing (if JD provided)
-   - **Detailed Suggestions**: Section-by-section improvement recommendations
-   - **Rewritten Examples**: Before/after examples of stronger bullet points
+   - **Overall Summary**: High-level assessment of resume quality
+   - **Strengths & Weaknesses**: Detailed SWOT analysis
+   - **Section Checklist**: Presence/absence of key resume sections
+   - **Keyword Analysis**: Matched and missing keywords (when JD provided)
+   - **Section-specific Suggestions**: Targeted improvement recommendations
+   - **Rewritten Examples**: Enhanced versions of weak bullet points
 
-5. **Implement Improvements:**
-   - Use the suggestions to update your CV
-   - Analyze again to see your progress!
+5. **Iterate and Improve:**
+   - Apply suggestions to your resume
+   - Re-analyze to track improvements
 
 ## Configuration
 
@@ -173,42 +242,50 @@ cv-analyzer/
 Edit `backend/app/config.py`:
 
 ```python
-# LLM Configuration (for future real API integration)
-LLM_MODEL_NAME = "gpt-4"
-LLM_MAX_TOKENS = 2000
-LLM_TEMPERATURE = 0.7
+# Gemini API Configuration
+GEMINI_MODEL_NAME = "gemini-1.5-flash"  # or "gemini-1.5-pro"
+GEMINI_MAX_TOKENS = 2000
+GEMINI_TEMPERATURE = 0.7
 
-# File Upload Configuration
+# File Upload Constraints
 MAX_FILE_SIZE = 10 * 1024 * 1024  # 10 MB
 ALLOWED_EXTENSIONS = [".pdf", ".docx"]
 ```
 
 ### Frontend Configuration
 
-Create `frontend/.env.local` to override the API URL:
+Create `frontend/.env.local` to override defaults:
 
 ```env
 VITE_API_URL=http://localhost:8000
 ```
 
-##  API Endpoints
+## API Reference
 
 ### `POST /api/analyze-cv`
 
-Analyzes a CV and returns improvement suggestions.
+Analyzes a resume and returns structured improvement suggestions.
 
 **Request:**
 
-- `cv_file`: File (PDF or DOCX)
-- `jd_text`: string (optional)
+- **Content-Type**: `multipart/form-data`
+- **Parameters**:
+  - `cv_file`: File (required) - PDF or DOCX format
+  - `jd_text`: string (optional) - Job description for keyword analysis
 
 **Response:**
 
 ```json
 {
-  "overall_summary": "string",
-  "strengths": ["string"],
-  "weaknesses": ["string"],
+  "overall_summary": "Comprehensive assessment of resume quality...",
+  "strengths": [
+    "Clear technical skills section",
+    "Quantified achievements in experience"
+  ],
+  "weaknesses": [
+    "Missing professional summary",
+    "Limited project descriptions"
+  ],
   "section_checklist": {
     "has_summary": true,
     "has_skills": true,
@@ -217,96 +294,105 @@ Analyzes a CV and returns improvement suggestions.
     "has_education": true
   },
   "jd_analysis": {
-    "jd_keywords": ["string"],
-    "matched_keywords": ["string"],
-    "missing_keywords": ["string"]
+    "jd_keywords": ["python", "fastapi", "docker"],
+    "matched_keywords": ["python", "docker"],
+    "missing_keywords": ["fastapi"]
   },
   "suggestions_by_section": [
     {
-      "section_name": "string",
-      "issues": ["string"],
-      "suggestions": ["string"]
+      "section_name": "Experience",
+      "issues": ["Bullet points lack quantification"],
+      "suggestions": ["Add metrics to demonstrate impact"]
     }
   ],
   "rewritten_examples": [
     {
-      "original": "string",
-      "improved": "string",
-      "section": "string"
+      "original": "Worked on backend development",
+      "improved": "Architected and deployed scalable backend services using FastAPI, reducing API response time by 40%",
+      "section": "Experience"
     }
   ]
 }
 ```
 
-##  LLM Integration
+## Gemini AI Integration
 
-Currently, the app uses a **mock LLM implementation** that returns realistic sample data. To integrate a real LLM API:
+The application leverages Google's Gemini AI for intelligent resume analysis with multilingual support.
 
-1. **Install additional dependencies:**
+### API Key Setup
 
-   ```bash
-   pip install openai  # or anthropic, etc.
-   ```
+1. Navigate to [Google AI Studio](https://aistudio.google.com/app/apikey)
+2. Sign in with your Google account
+3. Click "Create API Key"
+4. Copy the generated key (format: `AIzaSy...`)
 
-2. **Update `backend/app/services/llm_client.py`:**
+For detailed setup instructions, see [GEMINI_SETUP.md](GEMINI_SETUP.md)
 
-   - Add API key configuration
-   - Replace `_generate_mock_feedback()` with real API calls
-   - Implement proper error handling and retries
+### Model Options
 
-3. **Example OpenAI integration:**
+**Gemini 1.5 Flash** (Recommended for development):
 
-   ```python
-   import openai
+- 15 requests per minute
+- 1 million tokens per minute
+- 1,500 requests per day
+- Optimized for speed
 
-   def generate_ai_feedback(cv_text, jd_text, rule_based_result):
-       prompt = f"Analyze this CV and provide feedback: {cv_text}"
-       response = openai.ChatCompletion.create(
-           model="gpt-4",
-           messages=[{"role": "user", "content": prompt}]
-       )
-       # Parse response and return CVAnalysisResponse
-   ```
+**Gemini 1.5 Pro** (Higher quality):
 
-##  UI Features
+- 2 requests per minute
+- 32,000 tokens per minute
+- Enhanced analysis quality
+- Configure via `.env`: `GEMINI_MODEL=gemini-1.5-pro`
 
-- **Drag-and-drop** file upload
-- **Loading states** with smooth animations
-- **Expandable examples** - click to see before/after comparisons
-- **Responsive design** - works on desktop and mobile
-- **Visual indicators** - color-coded sections and keywords
-- **Smooth scrolling** - auto-scroll to results
-- **Error handling** - clear error messages
+### Automatic Fallback
 
-##  Testing
+The system implements graceful degradation:
 
-### Testing the Backend
+- If the Gemini API is unavailable or rate-limited, the application automatically falls back to mock data
+- Ensures continuous operation without service interruption
+- Logs indicate whether real AI or mock data is being used
+
+## Testing
+
+### Backend Testing
 
 ```bash
 cd backend
 
-# Test with a sample CV using curl
+# Test API endpoint with sample resume
 curl -X POST "http://localhost:8000/api/analyze-cv" \
   -F "cv_file=@/path/to/sample_cv.pdf" \
-  -F "jd_text=Looking for a Python developer with FastAPI experience"
+  -F "jd_text=Seeking Python developer with FastAPI and Docker experience"
 ```
 
-### Testing the Frontend
+### Frontend Testing
 
-1. Start both backend and frontend servers
+1. Ensure both backend and frontend servers are running
 2. Navigate to `http://localhost:5173`
-3. Upload a sample CV (PDF or DOCX)
-4. Optionally add a job description
-5. Verify all components display correctly
+3. Upload a test resume (PDF or DOCX)
+4. Optionally provide a job description
+5. Verify all UI components render correctly and data populates as expected
 
-##  Building for Production
+### Integration Testing
+
+```bash
+# Run backend tests (if test suite exists)
+cd backend
+pytest
+
+# Run frontend tests (if test suite exists)
+cd frontend
+npm test
+```
+
+## Production Build
 
 ### Backend
 
 ```bash
 cd backend
 pip install -r requirements.txt
-uvicorn app.main:app --host 0.0.0.0 --port 8000
+uvicorn app.main:app --host 0.0.0.0 --port 8000 --workers 4
 ```
 
 ### Frontend
@@ -314,50 +400,172 @@ uvicorn app.main:app --host 0.0.0.0 --port 8000
 ```bash
 cd frontend
 npm run build
-# Serve the dist/ folder with your preferred static file server
-npm run preview  # For local preview
+# Output directory: dist/
+# Serve with any static file server (nginx, Apache, etc.)
+
+# Preview production build locally
+npm run preview
 ```
 
-##  Future Enhancements
+### Docker Production Build
 
-- [ ] Real LLM API integration (OpenAI, Anthropic, etc.)
-- [ ] User authentication and CV history
-- [ ] Export suggestions as PDF
+```bash
+# Build and run in production mode
+docker-compose up -d
+
+# Scale backend for high availability
+docker-compose up -d --scale backend=3
+```
+
+## Deployment Strategies
+
+See [DOCKER.md](DOCKER.md) for detailed deployment guides covering:
+
+- **Container Registries**: Docker Hub, AWS ECR, Google Container Registry
+- **Cloud Platforms**: AWS ECS/Fargate, Google Cloud Run, Azure Container Instances
+- **Platform-as-a-Service**: Heroku, DigitalOcean App Platform, Railway
+- **VPS Deployment**: Setup with nginx reverse proxy and SSL
+- **CI/CD Integration**: GitHub Actions, GitLab CI, Jenkins
+
+## Technology Highlights
+
+### Backend Technologies
+
+- **FastAPI**: Modern, fast async web framework
+- **Pydantic**: Data validation using Python type hints
+- **PDFPlumber**: Robust PDF text extraction
+- **python-docx**: Microsoft Word document processing
+- **Google Generative AI**: LLM integration for intelligent analysis
+- **python-dotenv**: Environment variable management
+
+### Frontend Technologies
+
+- **React 18**: Latest React with concurrent features
+- **TypeScript**: Static typing for enhanced developer experience
+- **Vite**: Next-generation frontend tooling
+- **TailwindCSS**: Utility-first CSS framework
+- **Axios**: Promise-based HTTP client
+
+### DevOps & Infrastructure
+
+- **Docker**: Container runtime
+- **Docker Compose**: Multi-container orchestration
+- **Uvicorn**: ASGI server for FastAPI
+- **Nginx**: Reverse proxy and static file serving (in Docker)
+
+## Security Considerations
+
+- **API Key Protection**: Environment variables, never committed to version control
+- **File Upload Validation**: Size limits and format restrictions prevent abuse
+- **CORS Configuration**: Properly configured cross-origin policies
+- **Input Sanitization**: All user inputs are validated and sanitized
+- **Error Handling**: Generic error messages prevent information leakage
+- **Dependency Management**: Regular updates to patch security vulnerabilities
+
+## Troubleshooting
+
+### Backend Issues
+
+**Server fails to start:**
+
+- Verify Python version (3.8 or higher)
+- Ensure virtual environment is activated
+- Check all dependencies are installed: `pip list`
+- Confirm port 8000 is not in use: `lsof -i :8000`
+
+**API errors:**
+
+- Check backend logs for detailed error messages
+- Verify Gemini API key is correctly configured
+- Ensure `.env` file exists in backend directory
+
+### Frontend Issues
+
+**Cannot connect to backend:**
+
+- Verify backend is running at `http://localhost:8000`
+- Check CORS settings in `backend/app/main.py`
+- Inspect browser console for network errors
+- Confirm `VITE_API_URL` is correctly configured
+
+**Build failures:**
+
+- Clear node_modules and reinstall: `rm -rf node_modules && npm install`
+- Check Node.js version compatibility (16+)
+- Verify no TypeScript compilation errors: `npm run build`
+
+### Gemini API Issues
+
+**Authentication errors:**
+
+- Verify API key format (should start with `AIzaSy`)
+- Ensure no whitespace in the API key
+- Check API key is enabled in Google AI Studio
+
+**Rate limiting:**
+
+- Gemini 1.5 Flash: 15 requests per minute
+- Wait 60 seconds before retrying
+- Consider implementing client-side rate limiting
+- System will automatically fall back to mock data
+
+### Docker Issues
+
+**Container fails to start:**
+
+- Check Docker daemon is running: `docker ps`
+- Verify `.env` file exists and is properly formatted
+- Review logs: `docker-compose logs backend`
+- Ensure ports 8000 and 5173 are available
+
+**Network issues:**
+
+- Inspect Docker network: `docker network ls`
+- Verify service connectivity: `docker-compose exec backend ping frontend`
+- Check firewall rules are not blocking container communication
+
+## Performance Optimization
+
+- **Backend**: Async processing with FastAPI for concurrent request handling
+- **Frontend**: Code splitting and lazy loading for optimal bundle size
+- **Docker**: Multi-stage builds minimize image size
+- **Caching**: Dependency layer caching in Docker for faster rebuilds
+- **CDN**: Consider serving static assets via CDN in production
+
+## Roadmap
+
+- [ ] User authentication and session management
+- [ ] Resume version history and comparison
+- [ ] PDF export of analysis results
 - [ ] Additional file format support (RTF, TXT)
-- [ ] Resume templates and examples
-- [ ] ATS (Applicant Tracking System) compatibility checker
-- [ ] Industry-specific analysis
-- [ ] Multi-language support
-
-##  Notes for Students/Developers
-
-This project is designed to be:
-
-- **Educational**: Clean code with extensive comments
-- **Modular**: Easy to understand and extend
-- **Production-ready structure**: Follows best practices
-- **Beginner-friendly**: Suitable for 2nd-year CS/AI students
-
-Key learning points:
-
-- Full-stack development with modern technologies
-- REST API design and implementation
-- File upload handling (multipart/form-data)
-- PDF/DOCX text extraction
-- React component architecture
-- TypeScript type safety
-- State management in React
-- TailwindCSS styling
-- Mock vs real API integration patterns
-
-## License
-
-This project is provided as-is for educational and personal use.
+- [ ] Resume templates and examples library
+- [ ] ATS (Applicant Tracking System) compatibility scoring
+- [ ] Industry-specific analysis models
+- [ ] Team collaboration features
+- [ ] API rate limiting and usage analytics
+- [ ] Enhanced caching strategies
 
 ## Contributing
 
-Feel free to fork this project and add your own improvements!
+Contributions are welcome! Please follow these guidelines:
+
+1. Fork the repository
+2. Create a feature branch: `git checkout -b feature/your-feature-name`
+3. Commit your changes with clear, descriptive messages
+4. Write tests for new functionality
+5. Ensure all tests pass
+6. Submit a pull request with a detailed description
+
+## License
+
+This project is provided as-is for educational and personal use. For commercial use, please contact the maintainers.
+
+## Acknowledgments
+
+Built with modern web technologies and best practices in mind. Special thanks to the open-source community for the excellent tools and libraries that made this project possible.
 
 ---
 
-Built with Zéy
+**Version**: 1.0.0  
+**Last Updated**: November 2024  
+**Maintainer**: Professional Development Team

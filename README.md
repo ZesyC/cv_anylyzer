@@ -568,4 +568,4 @@ Built with modern web technologies and best practices in mind. Special thanks to
 
 **Version**: 1.0.0  
 **Last Updated**: November 2024  
-**Maintainer**: Professional Development Team
+**Maintainer**: Zesy Callisto

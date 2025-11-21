@@ -3,6 +3,7 @@
  * Handles CV file upload and optional Job Description input.
  */
 import React, { useState, useRef } from 'react';
+import { useLanguage } from '../contexts/LanguageContext';
 
 interface FileUploadFormProps {
   onSubmit: (file: File, jdText: string) => void;
@@ -14,6 +15,7 @@ const FileUploadForm: React.FC<FileUploadFormProps> = ({ onSubmit, isLoading }) 
   const [jdText, setJdText] = useState('');
   const [dragActive, setDragActive] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
+  const { t } = useLanguage();
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files[0]) {
@@ -54,7 +56,7 @@ const FileUploadForm: React.FC<FileUploadFormProps> = ({ onSubmit, isLoading }) 
 
   return (
     <form onSubmit={handleSubmit} className="bg-white rounded-lg shadow-md p-8">
-      <h2 className="text-2xl font-bold text-gray-800 mb-6">Upload Your CV</h2>
+      <h2 className="text-2xl font-bold text-gray-800 mb-6">{t.upload.title}</h2>
 
       {/* File Upload Area */}
       <div
@@ -99,7 +101,7 @@ const FileUploadForm: React.FC<FileUploadFormProps> = ({ onSubmit, isLoading }) 
               onClick={() => setSelectedFile(null)}
               className="text-sm text-primary-600 hover:text-primary-700 font-medium"
             >
-              Choose a different file
+              {t.upload.chooseAnother}
             </button>
           </div>
         ) : (
@@ -118,16 +120,16 @@ const FileUploadForm: React.FC<FileUploadFormProps> = ({ onSubmit, isLoading }) 
               />
             </svg>
             <p className="text-lg text-gray-700">
-              Drag and drop your CV here, or
+              {t.upload.dragDrop}
             </p>
             <button
               type="button"
               onClick={handleBrowseClick}
               className="px-4 py-2 bg-primary-500 text-white rounded-lg hover:bg-primary-600 transition-colors font-medium"
             >
-              Browse Files
+              {t.upload.browse}
             </button>
-            <p className="text-sm text-gray-500">Supports PDF and DOCX (max 10 MB)</p>
+            <p className="text-sm text-gray-500">{t.upload.supportedFormats}</p>
           </div>
         )}
       </div>
@@ -135,16 +137,16 @@ const FileUploadForm: React.FC<FileUploadFormProps> = ({ onSubmit, isLoading }) 
       {/* Job Description Textarea */}
       <div className="mt-6">
         <label htmlFor="jd-text" className="block text-sm font-semibold text-gray-700 mb-2">
-          Job Description (Optional)
+          {t.upload.jdLabel}
         </label>
         <textarea
           id="jd-text"
           value={jdText}
           onChange={(e) => setJdText(e.target.value)}
-          placeholder="Paste the job description here to get tailored suggestions..."
+          placeholder={t.upload.jdPlaceholder}
           rows={6}
           disabled={isLoading}
-          className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent resize-none disabled:bg-gray-100 disabled:cursor-not-allowed"
+          className="w-full px-4 py-3 bg-white text-gray-900 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent resize-none disabled:bg-gray-100 disabled:cursor-not-allowed"
         />
       </div>
 
@@ -175,10 +177,10 @@ const FileUploadForm: React.FC<FileUploadFormProps> = ({ onSubmit, isLoading }) 
                 d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
               />
             </svg>
-            Analyzing...
+            {t.upload.analyzing}
           </span>
         ) : (
-          'Analyze CV'
+          t.upload.analyzeButton
         )}
       </button>
     </form>

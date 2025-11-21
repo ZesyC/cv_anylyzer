@@ -15,13 +15,18 @@ const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000';
  */
 export async function analyzeCV(
   cvFile: File,
-  jdText?: string
+  jdText?: string,
+  language?: string
 ): Promise<CVAnalysisResponse> {
   const formData = new FormData();
   formData.append('cv_file', cvFile);
   
   if (jdText && jdText.trim()) {
     formData.append('jd_text', jdText.trim());
+  }
+  
+  if (language) {
+    formData.append('language', language);
   }
 
   try {

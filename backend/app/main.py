@@ -49,7 +49,8 @@ async def root():
 @app.post("/api/analyze-cv", response_model=CVAnalysisResponse)
 async def analyze_cv_endpoint(
     cv_file: UploadFile = File(..., description="CV file (PDF or DOCX)"),
-    jd_text: Optional[str] = Form(None, description="Optional Job Description text")
+    jd_text: Optional[str] = Form(None, description="Optional Job Description text"),
+    language: Optional[str] = Form("en", description="Language for analysis results (en or vi)")
 ):
     """
     Analyze a CV and provide improvement suggestions.
@@ -116,7 +117,7 @@ async def analyze_cv_endpoint(
                    f"Education={rule_based_result.has_education}")
         
         # Generate AI-powered feedback
-        analysis_result = generate_ai_feedback(cv_text, jd_text, rule_based_result)
+        analysis_result = generate_ai_feedback(cv_text, jd_text, rule_based_result, language or "en")
         
         logger.info("Analysis complete, returning results")
         

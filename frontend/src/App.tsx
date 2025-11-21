@@ -5,13 +5,16 @@
 import { useState } from 'react';
 import FileUploadForm from './components/FileUploadForm';
 import AnalysisResult from './components/AnalysisResult';
+import LanguageSwitcher from './components/LanguageSwitcher';
 import { analyzeCV } from './services/apiClient';
 import { CVAnalysisResponse } from './types/api';
+import { LanguageProvider, useLanguage } from './contexts/LanguageContext';
 
-function App() {
+function AppContent() {
   const [isLoading, setIsLoading] = useState(false);
   const [analysisResult, setAnalysisResult] = useState<CVAnalysisResponse | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const { t, language } = useLanguage();
 
   const handleAnalyzeCV = async (file: File, jdText: string) => {
     setIsLoading(true);
@@ -19,7 +22,7 @@ function App() {
     setAnalysisResult(null);
 
     try {
-      const result = await analyzeCV(file, jdText);
+      const result = await analyzeCV(file, jdText, language);
       setAnalysisResult(result);
       // Scroll to results smoothly
       setTimeout(() => {
@@ -46,12 +49,17 @@ function App() {
       {/* Header */}
       <header className="bg-white shadow-md">
         <div className="max-w-6xl mx-auto px-4 py-6">
-          <h1 className="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary-600 to-primary-800">
-            CV Analyzer
-          </h1>
-          <p className="text-gray-600 mt-2">
-            Get AI-powered suggestions to improve your resume and stand out to employers
-          </p>
+          <div className="flex justify-between items-center">
+            <div>
+              <h1 className="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary-600 to-primary-800">
+                {t.header.title}
+              </h1>
+              <p className="text-gray-600 mt-2">
+                {t.header.subtitle}
+              </p>
+            </div>
+            <LanguageSwitcher />
+          </div>
         </div>
       </header>
 
@@ -78,7 +86,7 @@ function App() {
                 />
               </svg>
               <div>
-                <h3 className="font-semibold text-danger mb-1">Analysis Failed</h3>
+                <h3 className="font-semibold text-danger mb-1">{t.error.title}</h3>
                 <p className="text-gray-700 text-sm">{error}</p>
               </div>
             </div>
@@ -109,9 +117,9 @@ function App() {
                 />
               </svg>
               <div>
-                <h3 className="text-xl font-semibold text-gray-800 mb-2">Analyzing Your CV...</h3>
+                <h3 className="text-xl font-semibold text-gray-800 mb-2">{t.loading.title}</h3>
                 <p className="text-gray-600">
-                  Extracting text, detecting sections, and generating personalized feedback
+                  {t.loading.subtitle}
                 </p>
               </div>
             </div>
@@ -122,12 +130,12 @@ function App() {
         {analysisResult && !isLoading && (
           <div id="results-section">
             <div className="mb-4 flex justify-between items-center">
-              <h2 className="text-2xl font-bold text-gray-800">Your CV Analysis</h2>
+              <h2 className="text-2xl font-bold text-gray-800">{t.analysis.title}</h2>
               <button
                 onClick={handleReset}
                 className="px-4 py-2 bg-primary-500 text-white rounded-lg hover:bg-primary-600 transition-colors font-medium"
               >
-                ← Analyze Another CV
+                {t.analysis.analyzeAnother}
               </button>
             </div>
             <AnalysisResult result={analysisResult} />
@@ -151,10 +159,10 @@ function App() {
               />
             </svg>
             <h3 className="text-xl font-semibold text-gray-700 mb-2">
-              Ready to improve your CV?
+              {t.empty.title}
             </h3>
             <p className="text-gray-500">
-              Upload your resume above to get started with AI-powered analysis and suggestions
+              {t.empty.subtitle}
             </p>
           </div>
         )}
@@ -164,11 +172,19 @@ function App() {
       <footer className="bg-white border-t border-gray-200 mt-12">
         <div className="max-w-6xl mx-auto px-4 py-6">
           <p className="text-center text-gray-600 text-sm">
-            Built with Zéy
+            {t.footer.builtWith}
           </p>
         </div>
       </footer>
     </div>
+  );
+}
+
+function App() {
+  return (
+    <LanguageProvider>
+      <AppContent />
+    </LanguageProvider>
   );
 }
 

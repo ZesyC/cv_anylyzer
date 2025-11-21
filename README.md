@@ -30,7 +30,7 @@ A full-stack web application that analyzes CVs/resumes and provides AI-powered s
 - **Axios** for API communication
 - Modular component architecture
 
-## 📁 Project Structure
+##  Project Structure
 
 ```
 cv-analyzer/
@@ -135,7 +135,7 @@ cv-analyzer/
 4. **Open the app:**
    Navigate to `http://localhost:5173` in your browser.
 
-## 📖 Usage
+##  Usage
 
 1. **Upload Your CV:**
 
@@ -150,7 +150,7 @@ cv-analyzer/
 
 3. **Analyze:**
 
-   - Click "🚀 Analyze CV"
+   - Click " Analyze CV"
    - Wait for the analysis to complete (usually 2-5 seconds)
 
 4. **Review Results:**
@@ -191,7 +191,7 @@ Create `frontend/.env.local` to override the API URL:
 VITE_API_URL=http://localhost:8000
 ```
 
-## 🔌 API Endpoints
+##  API Endpoints
 
 ### `POST /api/analyze-cv`
 
@@ -238,7 +238,7 @@ Analyzes a CV and returns improvement suggestions.
 }
 ```
 
-## 🤖 LLM Integration
+##  LLM Integration
 
 Currently, the app uses a **mock LLM implementation** that returns realistic sample data. To integrate a real LLM API:
 
@@ -268,7 +268,7 @@ Currently, the app uses a **mock LLM implementation** that returns realistic sam
        # Parse response and return CVAnalysisResponse
    ```
 
-## 🎨 UI Features
+##  UI Features
 
 - **Drag-and-drop** file upload
 - **Loading states** with smooth animations
@@ -278,7 +278,7 @@ Currently, the app uses a **mock LLM implementation** that returns realistic sam
 - **Smooth scrolling** - auto-scroll to results
 - **Error handling** - clear error messages
 
-## 🧪 Testing
+##  Testing
 
 ### Testing the Backend
 
@@ -299,7 +299,7 @@ curl -X POST "http://localhost:8000/api/analyze-cv" \
 4. Optionally add a job description
 5. Verify all components display correctly
 
-## 🚀 Building for Production
+##  Building for Production
 
 ### Backend
 
@@ -318,7 +318,7 @@ npm run build
 npm run preview  # For local preview
 ```
 
-## 🛠️ Future Enhancements
+##  Future Enhancements
 
 - [ ] Real LLM API integration (OpenAI, Anthropic, etc.)
 - [ ] User authentication and CV history
@@ -329,7 +329,7 @@ npm run preview  # For local preview
 - [ ] Industry-specific analysis
 - [ ] Multi-language support
 
-## 📝 Notes for Students/Developers
+##  Notes for Students/Developers
 
 This project is designed to be:
 

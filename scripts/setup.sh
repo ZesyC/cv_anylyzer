@@ -1,5 +1,4 @@
 #!/bin/bash
-# Script tự động sửa lỗi và cài đặt CV Analyzer
 # Auto-fix and setup script for CV Analyzer
 
 set -e  # Exit on error

@@ -23,22 +23,22 @@ _Transform your resume with AI-driven insights and actionable recommendations_
 
 ---
 
-## 📋 Overview
+## Overview
 
 CV Analyzer is a production-ready full-stack application that leverages Google's Gemini AI to provide intelligent resume analysis. The platform identifies keyword gaps, detects missing sections, and delivers contextual improvement suggestions by comparing resumes against job descriptions.
 
 ### Why CV Analyzer?
 
-- **🎯 Targeted Feedback**: Get specific, actionable suggestions tailored to your target role
-- **🔍 Keyword Optimization**: Identify missing keywords that ATS systems look for
-- **📊 Section Analysis**: Ensure your resume has all critical components
-- **✨ AI-Powered**: Powered by Google Gemini for contextual, intelligent recommendations
-- **🚀 Production-Ready**: Fully Dockerized with comprehensive configuration options
-- **🌐 Multilingual**: Supports English and Vietnamese analysis
+- **Targeted Feedback**: Get specific, actionable suggestions tailored to your target role
+- **Keyword Optimization**: Identify missing keywords that ATS systems look for
+- **Section Analysis**: Ensure your resume has all critical components
+- **AI-Powered**: Powered by Google Gemini for contextual, intelligent recommendations
+- **Production-Ready**: Fully Dockerized with comprehensive configuration options
+- **Multilingual**: Supports English and Vietnamese analysis
 
 ---
 
-## ✨ Key Features
+## Key Features
 
 ### Core Capabilities
 
@@ -61,7 +61,7 @@ CV Analyzer is a production-ready full-stack application that leverages Google's
 
 ---
 
-## 🏗️ Architecture
+## Architecture
 
 ### System Architecture
 
@@ -120,7 +120,7 @@ CV Analyzer is a production-ready full-stack application that leverages Google's
 
 ---
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 cv-analyzer/
@@ -175,7 +175,7 @@ cv-analyzer/
 
 ---
 
-## 🚀 Quick Start
+## Quick Start
 
 ### Prerequisites
 
@@ -202,7 +202,7 @@ cp .env.docker.example .env
 # 3. Start all services
 docker-compose up
 
-# ✅ Application ready!
+# Application ready!
 # Frontend: http://localhost:5173
 # Backend API: http://localhost:8000
 # API Docs: http://localhost:8000/docs
@@ -236,7 +236,7 @@ cp .env.example .env
 # 5. Start backend server
 uvicorn app.main:app --reload
 
-# ✅ Backend running at http://localhost:8000
+# Backend running at http://localhost:8000
 ```
 
 #### Frontend Setup
@@ -251,7 +251,7 @@ npm install
 # 3. Start development server
 npm run dev
 
-# ✅ Frontend running at http://localhost:5173
+# Frontend running at http://localhost:5173
 ```
 
 </details>
@@ -266,14 +266,14 @@ chmod +x scripts/setup.sh
 
 This script will:
 
-- ✅ Verify system prerequisites
-- ✅ Create Python virtual environment
-- ✅ Install all dependencies (backend & frontend)
-- ✅ Set up environment files
+- Verify system prerequisites
+- Create Python virtual environment
+- Install all dependencies (backend & frontend)
+- Set up environment files
 
 ---
 
-## 📖 Documentation
+## Documentation
 
 Comprehensive documentation is available in the `/docs` directory:
 
@@ -288,7 +288,7 @@ Comprehensive documentation is available in the `/docs` directory:
 
 ---
 
-## 🎯 Usage Guide
+## Usage Guide
 
 ### Basic Workflow
 
@@ -380,7 +380,7 @@ Comprehensive documentation is available in the `/docs` directory:
 
 ---
 
-## 🔌 API Reference
+## API Reference
 
 ### Endpoints
 
@@ -402,9 +402,9 @@ curl -X POST "http://localhost:8000/api/analyze-cv" \
 
 | Parameter  | Type   | Required | Description                                     |
 | ---------- | ------ | -------- | ----------------------------------------------- |
-| `cv_file`  | File   | ✅ Yes   | Resume file (PDF or DOCX, max 10MB)             |
-| `jd_text`  | String | ❌ No    | Job description for keyword analysis            |
-| `language` | String | ❌ No    | Analysis language (`en` or `vi`, default: `en`) |
+| `cv_file`  | File   |    Yes   | Resume file (PDF or DOCX, max 10MB)             |
+| `jd_text`  | String |    No    | Job description for keyword analysis            |
+| `language` | String |    No    | Analysis language (`en` or `vi`, default: `en`) |
 
 **Response:** `CVAnalysisResponse` (See [API Reference](docs/api-reference.md) for complete schema)
 
@@ -431,7 +431,7 @@ Health check endpoint.
 
 ---
 
-## 🔧 Configuration
+## Configuration
 
 ### Environment Variables
 
@@ -487,7 +487,7 @@ See [Gemini Setup Guide](docs/gemini-setup.md) for detailed instructions.
 
 ---
 
-## 🚢 Production Deployment
+## Production Deployment
 
 ### Docker Compose (Recommended)
 
@@ -529,15 +529,15 @@ npm run preview  # Preview production build locally
 
 See [Docker Deployment Guide](docs/docker-deployment.md) for detailed instructions on:
 
-- ☁️ **Cloud Platforms**: AWS (ECS/Fargate), Google Cloud Run, Azure Container Instances
-- 📦 **Container Registries**: Docker Hub, AWS ECR, Google Container Registry
-- 🎯 **Platform-as-a-Service**: Heroku, DigitalOcean App Platform, Railway
-- 🖥️ **VPS Deployment**: Setup with nginx reverse proxy and SSL
-- 🔄 **CI/CD Integration**: GitHub Actions, GitLab CI, Jenkins
+- **Cloud Platforms**: AWS (ECS/Fargate), Google Cloud Run, Azure Container Instances
+- **Container Registries**: Docker Hub, AWS ECR, Google Container Registry
+- **Platform-as-a-Service**: Heroku, DigitalOcean App Platform, Railway
+- **VPS Deployment**: Setup with nginx reverse proxy and SSL
+- **CI/CD Integration**: GitHub Actions, GitLab CI, Jenkins
 
 ---
 
-## 🧪 Testing
+## Testing
 
 ### Backend Tests
 
@@ -581,7 +581,7 @@ curl -X POST "http://localhost:8000/api/analyze-cv" \
 
 ---
 
-## 🐛 Troubleshooting
+## Troubleshooting
 
 ### Common Issues
 
@@ -704,31 +704,31 @@ lsof -i :5173  # Frontend
 
 ### Getting Help
 
-- 📚 **Documentation**: Check [docs/](docs/) for detailed guides
-- 🐛 **Issues**: [Search existing issues](../../issues) or create a new one
-- 💬 **Discussions**: Use GitHub Discussions for questions
-- 📧 **Contact**: Reach out to maintainers
+- **Documentation**: Check [docs/](docs/) for detailed guides
+- **Issues**: [Search existing issues](../../issues) or create a new one
+- **Discussions**: Use GitHub Discussions for questions
+- **Contact**: Reach out to maintainers
 
 ---
 
-## 🗺️ Roadmap
+## Roadmap
 
 ### Planned Features
 
-- [ ] 🔐 User authentication and session management
-- [ ] 📊 Resume version history and comparison
-- [ ] 📄 PDF export of analysis results
-- [ ] 📝 Additional file format support (RTF, TXT)
-- [ ] 📚 Resume templates and examples library
-- [ ] 🎯 ATS (Applicant Tracking System) compatibility scoring
-- [ ] 🏢 Industry-specific analysis models
-- [ ] 👥 Team collaboration features
-- [ ] 📈 Usage analytics and insights dashboard
-- [ ] ⚡ Enhanced caching strategies
-- [ ] 🌍 Additional language support
-- [ ] 🔗 Integration with LinkedIn and job boards
+- [ ] User authentication and session management
+- [ ] Resume version history and comparison
+- [ ] PDF export of analysis results
+- [ ] Additional file format support (RTF, TXT)
+- [ ] Resume templates and examples library
+- [ ] ATS (Applicant Tracking System) compatibility scoring
+- [ ] Industry-specific analysis models
+- [ ] Team collaboration features
+- [ ] Usage analytics and insights dashboard
+- [ ] Enhanced caching strategies
+- [ ] Additional language support
+- [ ] Integration with LinkedIn and job boards
 
-## 🤝 Contributing
+## Contributing
 
 We welcome contributions! Please see [CONTRIBUTING.md](CONTRIBUTING.md) for detailed guidelines.
 
@@ -760,7 +760,7 @@ We welcome contributions! Please see [CONTRIBUTING.md](CONTRIBUTING.md) for deta
 
 ---
 
-## 📄 License
+##  License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
@@ -768,19 +768,8 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ---
 
-## 🙏 Acknowledgments
 
-Built with modern web technologies and best practices. Special thanks to:
-
-- **Open Source Community**: For excellent tools and libraries
-- **Google**: For the Gemini AI API
-- **FastAPI**: For the amazing Python web framework
-- **React Team**: For the powerful UI library
-- **Contributors**: Everyone who has contributed to this project
-
----
-
-## 📞 Contact & Support
+## Contact & Support
 
 - **Maintainer**: Zesy Callisto
 - **Version**: 1.0.0
@@ -793,8 +782,8 @@ Built with modern web technologies and best practices. Special thanks to:
 
 <div align="center">
 
-**[⬆ back to top](#cv-analyzer)**
-   
-Made with ❤️ by the Zesy Callisto
+**[ back to top](#cv-analyzer)**
+
+Made with love by the Zesy Callisto
 
 </div>

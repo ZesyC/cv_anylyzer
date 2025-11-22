@@ -78,7 +78,7 @@ Nếu Gemini API fails (network, rate limit, etc.), hệ thống tự động qu
 -  15 requests/minute
 -  1 million tokens/minute
 -  1,500 requests/day
-- ⚡ Rất nhanh
+-  Rất nhanh
 
 **Gemini 1.5 Pro** (Nếu cần chất lượng cao hơn):
 

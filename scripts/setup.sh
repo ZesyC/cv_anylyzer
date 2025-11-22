@@ -4,7 +4,7 @@
 
 set -e  # Exit on error
 
-echo "🔧 CV Analyzer - Auto Setup & Fix Script"
+echo " CV Analyzer - Auto Setup & Fix Script"
 echo "========================================"
 echo ""
 
@@ -16,15 +16,15 @@ NC='\033[0m' # No Color
 
 # Function to print colored messages
 print_success() {
-    echo -e "${GREEN}✅ $1${NC}"
+    echo -e "${GREEN} $1${NC}"
 }
 
 print_error() {
-    echo -e "${RED}❌ $1${NC}"
+    echo -e "${RED} $1${NC}"
 }
 
 print_info() {
-    echo -e "${YELLOW}ℹ️  $1${NC}"
+    echo -e "${YELLOW}ℹ  $1${NC}"
 }
 
 # Check if we're in the right directory
@@ -105,21 +105,21 @@ echo "========================================"
 print_success "Setup Complete!"
 echo "========================================"
 echo ""
-echo "📝 Next Steps:"
+echo " Next Steps:"
 echo ""
-echo "1️⃣  Start Backend (Terminal 1):"
+echo "1.  Start Backend (Terminal 1):"
 echo "   cd backend"
 echo "   source venv/bin/activate"
 echo "   uvicorn app.main:app --reload"
 echo ""
 if [ "$SKIP_FRONTEND" = false ]; then
-    echo "2️⃣  Start Frontend (Terminal 2):"
+    echo "2.  Start Frontend (Terminal 2):"
     echo "   cd frontend"
     echo "   npm run dev"
     echo ""
-    echo "3️⃣  Open http://localhost:5173 in your browser"
+    echo "3.  Open http://localhost:5173 in your browser"
 else
-    echo "⚠️  Frontend not set up. Install Node.js and run this script again."
+    echo "  Frontend not set up. Install Node.js and run this script again."
 fi
 echo ""
 print_success "All errors should be fixed now!"
